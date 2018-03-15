@@ -3,22 +3,81 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class BoggleSolver
 {
-    public BoggleSolver(String[] dictionary)
+	private TrieST<Integer> tDictionary;
+    private BoggleBoard currBoard; 
+	
+	public BoggleSolver(String[] dictionary)
     {
+		tDictionary = new TrieST<>();
+		
+		for (String word : dictionary)
+		{
+			tDictionary.put(word, scoreOf(word));
+		}
     }
 
     public Iterable<String> getAllValidWords(BoggleBoard board)
     {
-        throw new UnsupportedOperationException();
+        HashSet<String> validWords = new HashSet<>();
+        
+        currBoard = board;
+        
+        for (int i = 0; i < board.rows(); i++)
+        {
+        	for(int j = 0; j < board.cols(); j++)
+        	{
+        		getWords(i, j)
+        	}
+        }
+        
+        return validWords;
     }
 
     public int scoreOf(String word)
     {
-        throw new UnsupportedOperationException();
+    	int length = word.length();
+    	
+    	if (length <= 2)
+    	{
+    		return 0;
+    	}
+    	else if (length <= 4)
+    	{
+    		return 1;
+    	}
+    	else if (length <= 5)
+    	{
+    		return 2;
+    	}
+    	else if (length <= 6)
+    	{
+    		return 3;
+    	}
+    	else if (length <= 7)
+    	{
+    		return 5;
+    	}
+    	else
+    	{
+    		return 11;
+    	}
     }
+
+    private void getWords(int row, int column, HashSet<String> validWords, )
+    {
+    	
+    }
+    
+    
+    
+    
+    
+    
+    
     
     // ------------------------
     // FREE TEST CODE
