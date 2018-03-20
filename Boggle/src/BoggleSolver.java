@@ -30,7 +30,11 @@ public class BoggleSolver
         {
         	for(int j = 0; j < board.cols(); j++)
         	{
-        		getWords(i, j)
+                boolean[][] traversed = new boolean[4][4];
+                traversed[i][j] = true;
+              
+                
+        		getWords(i, j, "", validWords, traversed);
         	}
         }
         
@@ -67,10 +71,33 @@ public class BoggleSolver
     	}
     }
 
-    private void getWords(int row, int column, HashSet<String> validWords, )
+    private void getWords(int row, int column, String prefix, HashSet<String> validWords, boolean[][] traversed)
     {
+    	if (traversed[row][column])
+    	{
+    		return;
+    	}
     	
+    	prefix += currBoard.getLetter(row, column);
+    	
+        if (currBoard.getLetter(row, column) == 'q')
+        {
+        	prefix += "u";
+        }
+        
+        if (tDictionary.contains(prefix))
+        {
+        	validWords.add(prefix);
+        }
     }
+ 
+    
+    
+    
+    
+    
+    
+    
     
     
     
