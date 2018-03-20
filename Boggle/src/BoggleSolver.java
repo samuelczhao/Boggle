@@ -91,7 +91,7 @@ public class BoggleSolver
         	{
                 for (int j = column - 1; j <= column + 1; j++)
                 {
-                	if (!traversed[i][j] && isValid(i, j))
+                	if (isValid(i, j) && !traversed[i][j])
                 	{
                 		getWords(i, j, prefix, validWords, traversed);
                 	}
