@@ -11,18 +11,10 @@ public class Trie
     
     public Node root;
     
-    public boolean containsPrefix(String prefix) 
-    {
-        Node node = root;
-        
-        for (int i = 0; i < prefix.length() && node != null; i++)
-        {
-            node = node.next[find(prefix, i)];
-        }
-        
-        return node != null;
-    }
-
+    public boolean containsPrefix(String key)
+	{
+		return get(root, 0, key) != null;
+	}
     public Node get(Node node, int a, String key) 
     {
         if (a == key.length()) return node;

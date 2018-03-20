@@ -16,7 +16,7 @@ public class BoggleSolver
 		
 		for (String word : dictionary)
 		{
-			tDictionary.put(word/*, scoreOf(word)*/);
+			tDictionary.put(word);
 		}
     }
 
@@ -30,7 +30,7 @@ public class BoggleSolver
         {
         	for(int j = 0; j < board.cols(); j++)
         	{
-                boolean[][] traversed = new boolean[4][4];
+                boolean[][] traversed = new boolean[board.rows()][board.cols()];
                 traversed[i][j] = true;
               
                 
