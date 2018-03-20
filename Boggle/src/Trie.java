@@ -1,64 +1,68 @@
+
 public class Trie
 {
-	private static final int R = 256;        // extended ASCII
-
-    private Node root = new Node();
-
-    public static class Node {
-        private int val;
+    public static final int R = 26;
+    
+    public static class Node 
+    {
+        public boolean val;
         public Node[] next = new Node[R];
     }
     
-    public Trie()
+    public Node root;
+    
+    public boolean containsPrefix(String prefix) 
     {
-    	
-    }
-    
-   /****************************************************
-    * Is the key in the symbol table?
-    ****************************************************/
-    public boolean contains(String key) {
-        return get(key) != null;
-    }
-    
-    public Integer get(String key) {
-        Node x = get(root, key, 0);
-        if (x == null) return null;
-        return x.val;
-    }
-
-    private Node get(Node x, String key, int d) {
-        if (x == null) return null;
-        if (d == key.length()) return x;
-        char c = key.charAt(d);
-        return get(x.next[c], key, d+1);
-    }
-
-    public void put(String key, int val) {
-        root = put(root, key, val, 0);
-    }
-
-    private Node put(Node x, String key, int val, int d) {
-        if (x == null) x = new Node();
-        if (d == key.length()) {
-            x.val = val;
-            return x;
-        }
-        char c = key.charAt(d);
-        x.next[c] = put(x.next[c], key, val, d+1);
-        return x;
-    }
-
-    public boolean containsPrefix(String prefix) {
-        Node x = get(root, prefix, 0);
-        for (Node node : x.next)
+        Node node = root;
+        
+        for (int i = 0; i < prefix.length() && node != null; i++)
         {
-        	if (node != null)
-        	{
-        		return true;
-        	}
+            node = node.next[find(prefix, i)];
         }
         
-        return false;
+        return node != null;
     }
+
+    public Node get(Node node, int a, String key) 
+    {
+        if (a == key.length()) return node;
+        char c = find(key, a);
+        return get(node.next[c], a + 1, key);
+    }
+
+    public void put(String key) 
+    {
+        root = put(root, 0, key);
+    }
+    
+    public char find(String s, int a)
+    {
+        return (char) (s.charAt(a) - 'A');
+    }
+    
+    public boolean containsWord(String key) 
+    {
+        Node node = get(root, 0, key);
+        
+        return node != null && node.val;
+    }
+
+    public Node put(Node node, int a, String key) 
+    {
+        if (node == null) 
+        {
+        	node = new Node();
+        }
+        
+        if (a == key.length())
+        {
+            node.val = true;
+            return node;
+        }
+        
+        char c = find(key, a);
+        node.next[c] = put(node.next[c], a + 1, key);
+        return node;
+    }
+
 }

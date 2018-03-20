@@ -16,7 +16,7 @@ public class BoggleSolver
 		
 		for (String word : dictionary)
 		{
-			tDictionary.put(word, scoreOf(word));
+			tDictionary.put(word/*, scoreOf(word)*/);
 		}
     }
 
@@ -82,7 +82,7 @@ public class BoggleSolver
         
         traversed[row][column] = true;
         
-        if (tDictionary.contains(newPrefix) && newPrefix.length() >= 3)
+        if (tDictionary.containsWord(newPrefix) && newPrefix.length() >= 3)
         {
         	validWords.add(newPrefix);
         }
