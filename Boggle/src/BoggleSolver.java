@@ -80,9 +80,11 @@ public class BoggleSolver
         	newPrefix += "u";
         }
         
-        if (tDictionary.contains(prefix))
+        traversed[row][column] = true;
+        
+        if (tDictionary.contains(newPrefix))
         {
-        	validWords.add(prefix);
+        	validWords.add(newPrefix);
         }
         
         if (tDictionary.keysWithPrefix(prefix) != null) //is a prefix)
