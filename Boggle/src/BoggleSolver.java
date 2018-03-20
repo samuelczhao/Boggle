@@ -74,9 +74,9 @@ public class BoggleSolver
     {
     	String newPrefix = prefix + currBoard.getLetter(row, column);
     	
-        if (currBoard.getLetter(row, column) == 'q')
+        if (currBoard.getLetter(row, column) == 'Q')
         {
-        	newPrefix += "u";
+        	newPrefix += "U";
         }
         
         traversed[row][column] = true;
