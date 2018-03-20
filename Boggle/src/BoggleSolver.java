@@ -85,7 +85,7 @@ public class BoggleSolver
         	validWords.add(prefix);
         }
         
-        if (true) //is a prefix)
+        if (tDictionary.keysWithPrefix(prefix) != null) //is a prefix)
        	{
         	for (int i = row - 1; i <= row + 1; i++)
         	{
