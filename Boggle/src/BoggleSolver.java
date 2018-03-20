@@ -40,7 +40,7 @@ public class BoggleSolver
         
         return validWords;
     }
-
+//s
     public int scoreOf(String word)
     {
     	int length = word.length();

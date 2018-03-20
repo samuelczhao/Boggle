@@ -56,5 +56,4 @@ public class Trie
         node.next[c] = put(node.next[c], a + 1, key);
         return node;
     }
-
 }
