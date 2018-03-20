@@ -33,7 +33,6 @@ public class BoggleSolver
                 boolean[][] traversed = new boolean[board.rows()][board.cols()];
                 traversed[i][j] = true;
               
-                
         		getWords(i, j, "", validWords, traversed);
         	}
         }
@@ -100,6 +99,7 @@ public class BoggleSolver
                 }
         	}
    		}
+        traversed[row][column] = false;
     }
  
     private boolean isValid(int row, int col)
