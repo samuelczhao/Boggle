@@ -73,11 +73,6 @@ public class BoggleSolver
 
     private void getWords(int row, int column, String prefix, HashSet<String> validWords, boolean[][] traversed)
     {
-    	if (traversed[row][column])
-    	{
-    		return;
-    	}
-    	
     	prefix += currBoard.getLetter(row, column);
     	
         if (currBoard.getLetter(row, column) == 'q')
@@ -89,9 +84,26 @@ public class BoggleSolver
         {
         	validWords.add(prefix);
         }
+        
+        if (true) //is a prefix)
+       	{
+        	for (int i = row - 1; i <= row + 1; i++)
+        	{
+                for (int j = column - 1; j <= column + 1; j++)
+                {
+                	if (!traversed[i][j] && isValid(i, j))
+                	{
+                		getWords(i, j, prefix, validWords, traversed);
+                	}
+                }
+        	}
+   		}
     }
  
-    
+    private boolean isValid(int row, int col)
+    {
+    	return row >= 0 && row < currBoard.rows() && col >= 0 && col < currBoard.cols();
+    }
     
     
     
