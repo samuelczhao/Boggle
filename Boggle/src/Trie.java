@@ -17,7 +17,16 @@ public class Trie
 	}
     public Node get(Node node, int a, String key) 
     {
-        if (a == key.length()) return node;
+    	if (node == null) 
+    	{
+    		return null;
+    	}
+    	
+        if (a == key.length()) 
+        {
+        	return node;
+        }
+        
         char c = find(key, a);
         return get(node.next[c], a + 1, key);
     }
