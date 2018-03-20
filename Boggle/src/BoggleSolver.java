@@ -7,12 +7,12 @@ import java.util.HashSet;
 
 public class BoggleSolver
 {
-	private TrieST<Integer> tDictionary;
+	private Trie tDictionary;
     private BoggleBoard currBoard; 
 	
 	public BoggleSolver(String[] dictionary)
     {
-		tDictionary = new TrieST<>();
+		tDictionary = new Trie();
 		
 		for (String word : dictionary)
 		{
@@ -82,12 +82,12 @@ public class BoggleSolver
         
         traversed[row][column] = true;
         
-        if (tDictionary.contains(newPrefix))
+        if (tDictionary.contains(newPrefix) && newPrefix.length() >= 3)
         {
         	validWords.add(newPrefix);
         }
         
-        if (tDictionary.keysWithPrefix(prefix) != null) //is a prefix)
+        if (tDictionary.containsPrefix(newPrefix))
        	{
         	for (int i = row - 1; i <= row + 1; i++)
         	{
