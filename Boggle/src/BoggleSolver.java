@@ -39,7 +39,7 @@ public class BoggleSolver
         
         return validWords;
     }
-//s
+
     public int scoreOf(String word)
     {
     	int length = word.length();
@@ -76,7 +76,7 @@ public class BoggleSolver
     	
         if (currBoard.getLetter(row, column) == 'Q')
         {
-        	newPrefix += "U";
+        	newPrefix += "u";
         }
         
         traversed[row][column] = true;
