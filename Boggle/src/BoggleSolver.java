@@ -82,7 +82,7 @@ public class BoggleSolver
 		String newPrefix = prefix + add;
 
 		traversed[row][column] = true;
-		Trie.Node node = tDictionary.get(n, prefix.length(), add);
+		Trie.Node node = tDictionary.get(n, prefix.length(), newPrefix);
 		if (node != null && node.val && newPrefix.length() >= 3)
 		{
 			validWords.add(newPrefix);
